@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Events Manager</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./static/events.css">
+    <script type="text/javascript" src="./static/events-start.js"></script>
+</head>
+<body>
+
+<div id="header">
+    <h1>Simple Events Manager</h1>
+</div>
+
+<div class="container">
+    <div class="left-side">
+        <form id="choose-person">
+            <h4>Choose one here:</h4>
+            <select id="people" onchange="loadEvents(event)">
+            </select>
+        </form>
+    </div>
+    <div class="right-side right-side-top">
+        <table id="events">
+            <tr>
+                <th>Event Name</th>
+                <th>Event Description</th>
+                <th>Datetime</th>
+            </tr>
+        </table>
+        <p id="events-no-data">
+            <br/> Choose person first.
+        </p>
+    </div>
+</div>
+<div class="container bottom-container">
+    <div class="left-side buttons">
+        <button class="reload append-button" onclick="addEvent();">Append</button>
+    </div>
+    <div class="right-side inputs">
+        <h4>Append new event for current user:</h4>
+        <form id="new-event">
+            <div class="first-input-line" style="width: 105%;">
+                <input type="text" id="person-name" name="person" placeholder="People name" style="width: 46%;">
+                <input type="text" id="event-name" name="name" placeholder="Event name" style="width: 46%;">
+            </div>
+            <input type="text" id="description" name="description" placeholder="Event description">
+            <input type="date" id="event-time" name="time" placeholder="Event time">
+        </form>
+    </div>
+</div>
+
+
+<div id="footer">
+    <p>Powered by Simple-Python-HTTP-Server</p>
+</div>
+
+</body>
+</html>
