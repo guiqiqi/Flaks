@@ -67,7 +67,7 @@ class Request:
         self.http = utils.DynamicDict()
 
     @staticmethod
-    def unquote(encoded: str) -> str:
+    def unquote(encoded: str, encoding: str = "utf-8") -> str:
         """
         Unquto url encoded string like:
         "Hello%20world" -> "Hello world"
@@ -77,10 +77,28 @@ class Request:
         Usage:
             unquote(encoded: str) -> decoded: str
         """
-        decoded = encoded
-        for key, value in consts.HEX_TO_BYTE.items():
-            decoded = decoded.replace(key, value)
-        return decoded
+
+        index, decoded = 0, list()
+        while index < len(encoded):
+            hexchars = list()
+
+            # Find for normal char
+            if encoded[index] != '%':
+                decoded.append(encoded[index])
+                index += 1
+                continue
+
+            # When find '%' - try to maximum match
+            while index < len(encoded) and encoded[index] == '%':
+                hexchars.append(encoded[index + 1])
+                hexchars.append(encoded[index + 2])
+                index += 3
+
+            # Then decode from hex
+            word = bytes.fromhex(''.join(hexchars)).decode(encoding)
+            decoded.append(word)
+
+        return ''.join(decoded)
 
     @staticmethod
     def url_decode(encoded: str, splitor="&") -> dict:

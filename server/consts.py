@@ -84,15 +84,15 @@ WSGI_VERSION = (1, 0)
 
 # Make a map from str to hex string
 # e.g. {'%55': U, '%56': 'V', '%57': 'W'}
-HEX_DIG = '0123456789ABCDEFabcdef'
-_PUNCTUATIONS = {s.encode() for s in
-                 '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'}
-_ALL_HEX_TO_BYTE = {('%' + f + s): bytes(bytearray.fromhex(f + s))
-                    for f in HEX_DIG for s in HEX_DIG}
-HEX_TO_BYTE = dict()
+# HEX_DIG = '0123456789ABCDEFabcdef'
+# _PUNCTUATIONS = {s.encode() for s in
+#                  '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'}
+# _ALL_HEX_TO_BYTE = {('%' + f + s): bytes(bytearray.fromhex(f + s))
+#                     for f in HEX_DIG for s in HEX_DIG}
+# HEX_TO_BYTE = dict()
 
-for key, value in _ALL_HEX_TO_BYTE.items():
-    if value.isalnum() or value.isspace():
-        HEX_TO_BYTE[key] = value.decode()
-    if value in _PUNCTUATIONS:
-        HEX_TO_BYTE[key] = value.decode()
+# for key, value in _ALL_HEX_TO_BYTE.items():
+#     if value.isalnum() or value.isspace():
+#         HEX_TO_BYTE[key] = value.decode()
+#     if value in _PUNCTUATIONS:
+#         HEX_TO_BYTE[key] = value.decode()
